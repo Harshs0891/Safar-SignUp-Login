@@ -13,22 +13,24 @@ import com.example.finallogin.Dto.UserDto;
 import com.example.finallogin.Response.Message;
 import com.example.finallogin.Service.UserService;
 
-@RestController
-@CrossOrigin
-@RequestMapping("safar/user")
+@RestController // Marks this class as a RESTful controller
+@CrossOrigin // Allows cross-origin requests from different domains
+@RequestMapping("safar/user") // Base URL mapping for UserController endpoints
 public class UserController {
     
-    @Autowired
+    @Autowired // Injects an instance of UserService into the controller
     private UserService userService;
 
     @PostMapping(path = "/register")
     public Message registerUser(@RequestBody UserDto userDTO){
+        // Invoke the addUser method from the UserService to register a user
         Message id = userService.addUser(userDTO);
         return id;
     }
 
     @PostMapping(path = "/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginDto loginDTO){
+        // Invoke the loginUser method from the UserService to authenticate a user
         Message loginMessage = userService.loginUser(loginDTO);
         return ResponseEntity.ok(loginMessage);
     }

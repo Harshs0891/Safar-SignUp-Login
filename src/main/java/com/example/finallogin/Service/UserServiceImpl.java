@@ -12,18 +12,19 @@ import com.example.finallogin.Entity.User;
 import com.example.finallogin.Repo.UserRepo;
 import com.example.finallogin.Response.Message;
 
-@Service
+@Service // Indicates that this class provides a service
 public class UserServiceImpl implements UserService{
 
-    @Autowired
+    @Autowired // Injects an instance of UserRepo into the service
     private UserRepo userRepo;
  
-    @Autowired
+    @Autowired // Injects an instance of PasswordEncoder into the service
     private PasswordEncoder passwordEncoder;
  
  
-    @Override
+    @Override // Indicates that this method overrides a method from the UserService interface
     public Message addUser(UserDto userDTO) {
+        // Implementation of logic for adding a new user
         User vUser = userRepo.findByEmail(userDTO.getEmail());
         if(vUser != null){
             return new Message("Email already in use !", false);
@@ -49,8 +50,9 @@ public class UserServiceImpl implements UserService{
         
     }
 
-    @Override
+    @Override // Indicates that this method overrides a method from the UserService interface
     public Message loginUser(LoginDto loginDTO) {
+        // Implementation of logic for authenticating a user
         User user1 = userRepo.findByUsername(loginDTO.getUsername());
         if(user1 != null){
             String password = loginDTO.getPassword();
@@ -67,5 +69,4 @@ public class UserServiceImpl implements UserService{
             return new Message("Username does not exits !", false);
         }
     }
-
 }
