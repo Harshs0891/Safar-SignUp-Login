@@ -9,30 +9,31 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name="users")
+@Entity // Specifies that this class is an entity mapped to a database table
+@Table(name="users") // Specifies the name of the table in the database
 public class User {
 
-    @Id
-    @Column(name="user_id",length = 1000)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id // Specifies that this field is the primary key of the entity
+    @Column(name="user_id",length = 1000) // Specifies the primary key column name and length
+    @GeneratedValue(strategy = GenerationType.AUTO) // Specifies automatic generation of the primary key
     private Long userid;
 
-    @NonNull
-    @Column(name="username", length = 255)
+    @NonNull // Specifies that this field cannot be null
+    @Column(name="username", length = 255) // Specifies the column name and length for username
     private String username;
 
-    @NonNull
-    @Column(name="email", length = 255)
+    @NonNull // Specifies that this field cannot be null
+    @Column(name="email", length = 255) // Specifies the column name and length for email
     private String email;
 
-    @NonNull
-    @Column(name="password", length = 255)
+    @NonNull // Specifies that this field cannot be null
+    @Column(name="password", length = 255) // Specifies the column name and length for password
     private String password;
 
     public User() {
     }
 
+    // Constructor with parameters
     public User(Long userid, String username, String email, String password) {
         this.userid = userid;
         this.username = username;
@@ -40,6 +41,7 @@ public class User {
         this.password = password;
     }
 
+    // Getter and Setter methods for userid
     public Long getUserid() {
         return userid;
     }
@@ -48,6 +50,7 @@ public class User {
         this.userid = userid;
     }
 
+    // Getter and Setter methods for username
     public String getUsername() {
         return username;
     }
@@ -55,7 +58,8 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
+    
+    // Getter and Setter methods for email
     public String getEmail() {
         return email;
     }
@@ -64,6 +68,7 @@ public class User {
         this.email = email;
     }
 
+    // Getter and Setter methods for password
     public String getPassword() {
         return password;
     }
